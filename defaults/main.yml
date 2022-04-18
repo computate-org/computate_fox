@@ -1,0 +1,17 @@
+---
+APP_PYTHON: "{{ '/usr/bin/python' if lookup('file', '/usr/bin/python', errors='ignore') else '/usr/bin/python3' }}"
+APP_DEPENDENCIES_REDHAT:
+  - make
+  - gcc
+  - gcc-c++
+  - git
+APP_DEPENDENCIES: "{{ APP_DEPENDENCIES_REDHAT if ansible_distribution_file_variety == 'RedHat' else APP_DEPENDENCIES_REDHAT }}"
+APP_NAME: fox
+APP_USER: "{{ lookup('env', 'USER') }}"
+APP_PREFIX: "/home/{{ APP_USER }}/.local"
+APP_ROOT: "{{ false if APP_PREFIX is regex('^/home') else true }}"
+APP_SRC: "{{ APP_PREFIX }}/src/{{ APP_NAME }}"
+APP_VERSION: 1.6.9
+APP_DOWNLOAD_URL: "http://fox-toolkit.org/ftp/fox-{{ APP_VERSION }}.tar.gz"
+APP_DOWNLOAD_DEST: "{{ lookup('env', 'HOME') }}/Downloads/fox-{{ APP_VERSION }}.tar.gz"
+
