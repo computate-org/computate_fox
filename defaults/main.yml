@@ -20,5 +20,5 @@ APP_ROOT: "{{ false if APP_PREFIX is regex('^/home') else true }}"
 APP_SRC: "{{ APP_PREFIX }}/src/{{ APP_NAME }}"
 APP_VERSION: 1.6.57
 APP_DOWNLOAD_URL: "http://fox-toolkit.org/ftp/fox-{{ APP_VERSION }}.tar.gz"
-APP_DOWNLOAD_DIR: "{{ lookup('env', 'HOME') }}/Downloads/"
+APP_DOWNLOAD_DIR: "{{ lookup('env', 'HOME') }}/Downloads"
 APP_DOWNLOAD_DEST: "{{ APP_DOWNLOAD_DIR }}/fox-{{ APP_VERSION }}.tar.gz"
