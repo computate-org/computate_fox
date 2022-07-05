@@ -34,12 +34,12 @@
   shell: ./configure --prefix {{ APP_PREFIX }}
   args:
     chdir: "{{ APP_SRC }}"
-- name: Run make
-  shell: make
+- name: Run make -j $(nproc)
+  shell: make -j $(nproc)
   args:
     chdir: "{{ APP_SRC }}"
-- name: Run make install
-  shell: make install
+- name: Run make install -j $(nproc)
+  shell: make install -j $(nproc)
   args:
     chdir: "{{ APP_SRC }}"
   become: "{{ APP_ROOT }}"
